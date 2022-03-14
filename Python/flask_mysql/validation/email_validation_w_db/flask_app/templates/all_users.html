@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div id="emailhead">
+            <h2>Email Addresses Entered</h2>
+        </div>
+        <div id="all_emails">
+            <table class="table table-striped">
+                <thead>
+                    <th>Email</th>
+                    <th>Created</th>
+                </thead>
+                <tbody>
+                    {% for email in all_emails %}
+                    <tr>
+                        <td>{{email.email}}</td>
+                        <td>{{email.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
