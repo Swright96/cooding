@@ -1,0 +1,11 @@
+*{
+    margin: 0px auto;
+}
+.container{
+    width: 1060px;
+    display: flex;
+}
+#form1, #form2{
+    width: 350px;
+    margin: 15px;
+}
