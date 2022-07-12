@@ -9,16 +9,24 @@ module.exports.index = (reqeust, response) => {
 
 module.exports.findAllPeople = (req, res) => {
 	Person.find()
-		.then((allThePeople) => {
-			res.json({ People: allThePeople })
+		.then((people) => {
+			console.log(people)
+			res.json({ people })
 		})
 		.catch((err) => {
+			console.log(err)
 			res.json({ message: "Oopsie!", error: err })
 		})
 }
 
 module.exports.createPerson = (request, response) => {
 	Person.create(request.body)
+		.then((person) => response.json(person))
+		.catch((err) => response.json(err))
+}
+
+module.exports.getPerson = (request, response) => {
+	Person.findOne({ _id: request.params.id })
 		.then((person) => response.json(person))
 		.catch((err) => response.json(err))
 }
