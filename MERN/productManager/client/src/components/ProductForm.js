@@ -2,28 +2,14 @@ import React, { useState } from "react"
 import axios from "axios"
 
 const ProductForm = (props) => {
-	const { product, setProduct } = props
+	const { initialTitle, initialPrice, initialDescription, onSubmitProp } =
+		props
 	const [title, setTitle] = useState("")
 	const [price, setPrice] = useState("")
 	const [description, setDescription] = useState("")
-
 	const onSubmitHandler = (p) => {
 		p.preventDefault()
-		axios
-			.post("http://localhost:8000/api/product", {
-				title,
-				price,
-				description,
-			})
-			.then((res) => {
-				console.log(res)
-				console.log(res.data)
-				setProduct([...product, res.data])
-				setTitle("")
-				setPrice("")
-				setDescription("")
-			})
-			.catch((err) => console.log(err))
+		onSubmitProp({ title, price, description })
 	}
 
 	return (
@@ -31,13 +17,20 @@ const ProductForm = (props) => {
 			<p>
 				<label>Title</label>
 				<br />
-				<input type="text" onChange={(p) => setTitle(p.target.value)} />
+				<input
+					type="text"
+					name="title"
+					value={title}
+					onChange={(p) => setTitle(p.target.value)}
+				/>
 			</p>
 			<p>
 				<label>Price</label>
 				<br />
 				<input
 					type="double"
+					name="price"
+					value={price}
 					onChange={(p) => setPrice(p.target.value)}
 				/>
 			</p>
@@ -46,6 +39,8 @@ const ProductForm = (props) => {
 				<br />
 				<input
 					type="text"
+					name="description"
+					value={description}
 					onChange={(p) => setDescription(p.target.value)}
 				/>
 			</p>
